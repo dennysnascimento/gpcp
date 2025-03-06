@@ -22,11 +22,11 @@ Este projeto é um sistema de gestão de pistas de corrida e pilotos, focado em 
 ## Como Executar Localmente
 1. Clone o repositório:
     ```bash
-    git clone https://github.com/nascimentosolutions/automotiveFPA.git
+    git clone https://github.com/dennysnascimento/gpcp.git
     ```
 2. Navegue até o diretório:
     ```bash
-    cd automotiveFPA
+    cd automotive
     ```
 3. Execute o Docker Compose para iniciar os serviços:
     ```bash

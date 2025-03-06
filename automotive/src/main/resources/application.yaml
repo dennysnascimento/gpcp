@@ -1,0 +1,80 @@
+# Configurações do servidor
+server:
+  port: 8080
+
+# URL do banco de dados
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fpa
+    username: postgres
+    password: 123$
+    driver-class-name: org.postgresql.Driver
+
+
+  # Configuração para atualizar automaticamente o esquema do banco de dados
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+# Configurações OpenTelemetry
+otel:
+  traces:
+    exporter: otlp
+  metrics:
+    exporter: otlp
+  exporter:
+    otlp:
+      endpoint: http://localhost:4317
+
+# Configurações Swagger
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    docExpansion: none
+
+# Configurações de segurança
+# spring:
+#   security:
+#     user:
+#       name: root
+#       password: 123$
+
+
+#Configuração do Spring Actuator, coletando métricas detalhadas
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    enable:
+      jvm: true
+    tags:
+      application: 'FPA - "address-api" '
+    distribution:
+      slo:
+        http: '5ms,10ms,25ms,50ms,100ms,200ms,300ms,400ms,500ms,1s,2s'
+      percentiles-histogram:
+        http:
+          server:
+            requests: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+
+#Informações sobre o projeto
+project:
+  version: 0.0.1-SNAPSHOT
